@@ -27,6 +27,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.getData();
+    console.log(localStorage.getItem("bookingSeat"));
   }
 
   getData = () => {
@@ -133,7 +134,11 @@ class Home extends Component {
     return (
       <>
         <Container className={styles.containerCenter}>
-          <h1 className={`${styles.headingColor} mr-auto`}>Home Page !</h1>
+          <h1
+            className={`${styles.headingColor} ml-5 mr-5 ${styles.headingFont}`}
+          >
+            Home Page !
+          </h1>
           <NavBar />
           <div className={styles.containerForm}>
             <Form
