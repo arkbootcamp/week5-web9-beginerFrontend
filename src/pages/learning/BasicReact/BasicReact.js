@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import "./BasicReact.css";
 import styles from "./BasicReact.module.css";
 import { Link } from "react-router-dom";
-import { Button, Container } from "react-bootstrap";
+import { Button, Container, Modal } from "react-bootstrap";
 import NavBar from "../../../components/learning/NavBar";
 
 class BasicReact extends Component {
@@ -22,6 +22,7 @@ class BasicReact extends Component {
           movie_name: "Batman",
         },
       ],
+      isShowModal: false,
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -65,9 +66,17 @@ class BasicReact extends Component {
     this.props.history.push(`/learning/basic-movie-detail?movieId=${id}`);
   };
 
+  handleShow = () => {
+    this.setState({ isShowModal: true });
+  };
+
+  handleClose = () => {
+    this.setState({ isShowModal: false });
+  };
+
   render() {
     console.log(this.state);
-    const { name, search } = this.state;
+    const { name, search, isShowModal } = this.state;
     return (
       <>
         <Container className={styles.containerCenter}>
@@ -114,6 +123,28 @@ class BasicReact extends Component {
           {this.state.data.map((item, index) => {
             return <li key={index}>{item.movie_name}</li>;
           })}
+          <hr />
+          <h3>Modal Bootstrap</h3>
+          <Button variant="primary" onClick={this.handleShow}>
+            Launch demo modal
+          </Button>
+
+          <Modal show={isShowModal} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Woohoo, you're reading this text in a modal!
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={this.handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={this.handleClose}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </Container>
       </>
     );
