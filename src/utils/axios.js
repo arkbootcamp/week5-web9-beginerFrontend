@@ -1,7 +1,7 @@
 import axios from "axios";
-
+console.log(process.env.REACT_APP_BASE_URL);
 const axiosApiIntances = axios.create({
-  baseURL: "http://localhost:3001/api/v1/",
+  baseURL: `${process.env.REACT_APP_BASE_URL}`,
 });
 
 export default axiosApiIntances;
